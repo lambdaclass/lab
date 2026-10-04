@@ -9,7 +9,8 @@ fleet. It serves the cbt-api tables that page reads, plus the built frontend.
 | mainnet | `nethermind-mainnet-1`, `reth-mainnet-1`, `ethrex-mainnet-2` |
 | plataberget | `ethrex-mainnet-3` (Nethermind), `ethrex-mainnet-4` (Reth), `ethrex-mainnet-5` (ethrex) |
 
-Hosted on `ethrex-grafana`: http://ethrex-grafana:8080/ethereum/execution/timings (Tailscale).
+Hosted on `ethrex-grafana`: **https://grafana.ethrex.xyz/lab/** (Caddy routes `/lab/*` to the API on :8080,
+which also serves the frontend; to move to its own domain, build without `LAB_BASE_PATH` and point the domain at :8080).
 
 ## Run it
 
@@ -48,12 +49,25 @@ curl -s "localhost:8080/api/v1/mainnet/fct_engine_new_payload_by_el_client_hourl
 ### Deploy on ethrex-grafana
 
 ```sh
-rsync -az --exclude node_modules --exclude .git ./ admin@ethrex-grafana:lab/   # includes dist/ after pnpm build
+LAB_BASE_PATH=/lab/ pnpm build             # the frontend lives under grafana.ethrex.xyz/lab/
+rsync -az --delete --exclude data/ --exclude __pycache__/ backend dist admin@ethrex-grafana:lab/
 ssh admin@ethrex-grafana
 sudo cp ~/lab/backend/deploy/lab-collector@.service ~/lab/backend/deploy/lab-api.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable --now lab-collector@mainnet lab-collector@plataberget lab-api
 cd ~/lab/backend && LAB_DATA_DIR=~/lab-data python3 backfill.py --network mainnet   # once
+```
+
+The Caddy route on `ethrex-grafana` (`/etc/caddy/Caddyfile`, inside the `grafana.ethrex.xyz` block):
+
+```
+redir /lab /lab/ 308
+handle_path /lab/* {
+  reverse_proxy http://127.0.0.1:8080
+}
+handle {
+  reverse_proxy http://127.0.0.1:3000
+}
 ```
 
 Adding a network: copy `networks/mainnet.json`, list its nodes (each EL with its own
@@ -100,6 +114,8 @@ it. The "L1 Client Comparison" Grafana dashboards count wins the same way, from 
 - `src/api/zod.gen.ts`: the engine timing tables accept decimal durations. Upstream
   validates them as integers, and Plataberget payloads take 2–5 ms.
 - The sidebar only enables Timings, and `/` redirects there.
+- `LAB_BASE_PATH` (default `/`) builds the lab for a sub-path; the router, the API prefix and
+  the `public/` asset paths follow it.
 - The backend replaces ethPandaOps' xatu + ClickHouse + cbt-api stack with SQLite and
   aggregates on request, which is enough for three nodes per network.
 
