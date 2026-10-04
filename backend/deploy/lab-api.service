@@ -1,0 +1,15 @@
+[Unit]
+Description=LambdaClass lab: frontend + engine timing API on :8080
+After=network-online.target
+
+[Service]
+User=admin
+WorkingDirectory=/home/admin/lab/backend
+Environment=PYTHONUNBUFFERED=1
+Environment=LAB_DATA_DIR=/home/admin/lab-data
+ExecStart=/usr/bin/python3 api.py --host 0.0.0.0 --port 8080 --static /home/admin/lab/dist
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

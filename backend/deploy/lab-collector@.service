@@ -1,0 +1,17 @@
+# One collector per network: systemctl enable --now lab-collector@plataberget lab-collector@mainnet
+[Unit]
+Description=LambdaClass lab collector for %i (polls each node's Lighthouse engine-call counters)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=admin
+WorkingDirectory=/home/admin/lab/backend
+Environment=PYTHONUNBUFFERED=1
+Environment=LAB_DATA_DIR=/home/admin/lab-data
+ExecStart=/usr/bin/python3 collector.py --network %i
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

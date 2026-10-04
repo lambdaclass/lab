@@ -1,0 +1,175 @@
+{
+  "name": "mainnet",
+  "seconds_per_slot": 12,
+  "slots_per_epoch": 32,
+  "node_class": "eip7870-block-builder",
+  "prometheus": "http://ethrex-grafana:9090",
+  "prometheus_job": "lighthouse",
+  "block_rpc": [
+    "http://ethrex-mainnet-2:8545",
+    "http://reth-mainnet-1:8545",
+    "http://nethermind-mainnet-1:8545"
+  ],
+  "history_rpc": "http://reth-mainnet-1:8545",
+  "history_headers": true,
+  "backfill_days": 31,
+  "nodes": [
+    {
+      "name": "nethermind-mainnet-1",
+      "impl": "Nethermind",
+      "metrics": "http://nethermind-mainnet-1:5054/metrics",
+      "rpc": "http://nethermind-mainnet-1:8545",
+      "prometheus_instance": "nethermind-mainnet-1:5054"
+    },
+    {
+      "name": "reth-mainnet-1",
+      "impl": "Reth",
+      "metrics": "http://reth-mainnet-1:5054/metrics",
+      "rpc": "http://reth-mainnet-1:8545",
+      "prometheus_instance": "reth-mainnet-1:5054"
+    },
+    {
+      "name": "ethrex-mainnet-2",
+      "impl": "ethrex",
+      "metrics": "http://ethrex-mainnet-2:5054/metrics",
+      "rpc": "http://ethrex-mainnet-2:8545",
+      "prometheus_instance": "ethrex-mainnet-2:5054"
+    }
+  ],
+  "lab": {
+    "name": "mainnet",
+    "display_name": "Mainnet",
+    "chain_id": 1,
+    "genesis_time": 1606824023,
+    "genesis_delay": 0,
+    "forks": {
+      "consensus": {
+        "altair": {
+          "epoch": 74240,
+          "timestamp": 1635332183
+        },
+        "bellatrix": {
+          "epoch": 144896,
+          "timestamp": 1662464087
+        },
+        "capella": {
+          "epoch": 194048,
+          "timestamp": 1681338455
+        },
+        "deneb": {
+          "epoch": 269568,
+          "timestamp": 1710338135
+        },
+        "electra": {
+          "epoch": 364032,
+          "timestamp": 1746612311,
+          "min_client_versions": {
+            "grandine": "1.1.0",
+            "lighthouse": "7.0.0",
+            "lodestar": "1.29.0",
+            "nimbus": "25.4.1",
+            "prysm": "6.0.0",
+            "teku": "25.4.1"
+          }
+        },
+        "fulu": {
+          "epoch": 411392,
+          "timestamp": 1764798551,
+          "min_client_versions": {
+            "grandine": "2.0.0",
+            "lighthouse": "8.0.0",
+            "lodestar": "1.36.0",
+            "nimbus": "25.11.0",
+            "prysm": "7.0.0",
+            "teku": "25.11.0",
+            "tysm": "0.49.0"
+          }
+        }
+      },
+      "execution": {
+        "arrow_glacier": {
+          "block": 13773000,
+          "timestamp": 1639079723
+        },
+        "berlin": {
+          "block": 12244000,
+          "timestamp": 1618481223
+        },
+        "byzantium": {
+          "block": 4370000,
+          "timestamp": 1508131331
+        },
+        "constantinople": {
+          "block": 7280000,
+          "timestamp": 1551383524
+        },
+        "dao": {
+          "block": 1920000,
+          "timestamp": 1469020840
+        },
+        "frontier": {
+          "block": 0,
+          "timestamp": 1438269973
+        },
+        "gray_glacier": {
+          "block": 15050000,
+          "timestamp": 1656586444
+        },
+        "homestead": {
+          "block": 1150000,
+          "timestamp": 1457981393
+        },
+        "istanbul": {
+          "block": 9069000,
+          "timestamp": 1575764709
+        },
+        "london": {
+          "block": 12965000,
+          "timestamp": 1628166822
+        },
+        "muir_glacier": {
+          "block": 9200000,
+          "timestamp": 1577953849
+        },
+        "paris": {
+          "block": 15537394,
+          "timestamp": 1663224179
+        },
+        "petersburg": {
+          "block": 7280000,
+          "timestamp": 1551383524
+        },
+        "spurious_dragon": {
+          "block": 2675000,
+          "timestamp": 1479831344
+        },
+        "tangerine_whistle": {
+          "block": 2463000,
+          "timestamp": 1476796771
+        }
+      }
+    },
+    "blob_schedule": [
+      {
+        "epoch": 412672,
+        "timestamp": 1765290071,
+        "max_blobs_per_block": 15
+      },
+      {
+        "epoch": 419072,
+        "timestamp": 1767747671,
+        "max_blobs_per_block": 21
+      }
+    ],
+    "service_urls": {
+      "beaconExplorer": "https://beaconcha.in",
+      "blobArchive": "https://blob-archive.mainnet.ethpandaops.io",
+      "dora": "https://light-mainnet.beaconcha.in",
+      "ethstats": "https://ethstats.mainnet.ethpandaops.io",
+      "explorer": "https://etherscan.io",
+      "forkmon": "https://forkmon.mainnet.ethpandaops.io",
+      "forky": "https://forky.mainnet.ethpandaops.io",
+      "tracoor": "https://tracoor.mainnet.ethpandaops.io"
+    }
+  }
+}

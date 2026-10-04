@@ -1,0 +1,88 @@
+{
+  "name": "plataberget",
+  "seconds_per_slot": 12,
+  "slots_per_epoch": 32,
+  "node_class": "eip7870-block-builder",
+  "prometheus": "http://ethrex-grafana:9090",
+  "prometheus_job": "plataberget",
+  "block_rpc": [
+    "http://ethrex-mainnet-5:8545",
+    "http://ethrex-mainnet-4:8545",
+    "http://ethrex-mainnet-3:8545"
+  ],
+  "history_rpc": "http://ethrex-mainnet-4:8545",
+  "history_headers": false,
+  "backfill_since": "2026-09-15T16:00:00",
+  "nodes": [
+    {
+      "name": "ethrex-mainnet-3",
+      "impl": "Nethermind",
+      "metrics": "http://ethrex-mainnet-3:5054/metrics",
+      "rpc": "http://ethrex-mainnet-3:8545",
+      "prometheus_instance": "nethermind-plataberget-1:5054"
+    },
+    {
+      "name": "ethrex-mainnet-4",
+      "impl": "Reth",
+      "metrics": "http://ethrex-mainnet-4:5054/metrics",
+      "rpc": "http://ethrex-mainnet-4:8545",
+      "prometheus_instance": "reth-plataberget-1:5054"
+    },
+    {
+      "name": "ethrex-mainnet-5",
+      "impl": "ethrex",
+      "metrics": "http://ethrex-mainnet-5:5054/metrics",
+      "rpc": "http://ethrex-mainnet-5:8545",
+      "prometheus_instance": "ethrex-plataberget-1:5054"
+    }
+  ],
+  "lab": {
+    "name": "plataberget",
+    "display_name": "Plataberget",
+    "chain_id": 7091047534,
+    "genesis_time": 1786622400,
+    "genesis_delay": 0,
+    "forks": {
+      "consensus": {
+        "altair": {
+          "epoch": 0,
+          "timestamp": 1786622400
+        },
+        "bellatrix": {
+          "epoch": 0,
+          "timestamp": 1786622400
+        },
+        "capella": {
+          "epoch": 0,
+          "timestamp": 1786622400
+        },
+        "deneb": {
+          "epoch": 0,
+          "timestamp": 1786622400
+        },
+        "electra": {
+          "epoch": 0,
+          "timestamp": 1786622400
+        },
+        "fulu": {
+          "epoch": 0,
+          "timestamp": 1786622400
+        },
+        "gloas": {
+          "epoch": 1536,
+          "timestamp": 1787212224
+        }
+      }
+    },
+    "service_urls": {
+      "beaconRpc": "http://ethrex-mainnet-5:5052"
+    },
+    "blob_schedule": [
+      {
+        "epoch": 0,
+        "timestamp": 1786622400,
+        "max_blobs_per_block": 21
+      }
+    ]
+  }
+}
