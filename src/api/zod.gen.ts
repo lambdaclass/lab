@@ -4712,16 +4712,7 @@ export const zFctDataColumnAvailabilityHourly = z.object({
 });
 
 export const zFctEngineGetBlobsByElClient = z.object({
-  avg_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  avg_duration_ms: z.optional(z.number()),
   avg_returned_count: z.optional(z.number()),
   block_root: z.optional(z.string()),
   epoch: z.optional(
@@ -4740,16 +4731,7 @@ export const zFctEngineGetBlobsByElClient = z.object({
         z.maximum(4294967295, { error: 'Invalid value: Expected uint32 to be <= 4294967295' })
       )
   ),
-  max_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  max_duration_ms: z.optional(z.number()),
   max_requested_count: z.optional(
     z
       .int()
@@ -4758,28 +4740,10 @@ export const zFctEngineGetBlobsByElClient = z.object({
         z.maximum(4294967295, { error: 'Invalid value: Expected uint32 to be <= 4294967295' })
       )
   ),
-  median_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  median_duration_ms: z.optional(z.number()),
   meta_execution_implementation: z.optional(z.string()),
   meta_execution_version: z.optional(z.string()),
-  min_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  min_duration_ms: z.optional(z.number()),
   node_class: z.optional(z.string()),
   observation_count: z.optional(
     z
@@ -4789,16 +4753,7 @@ export const zFctEngineGetBlobsByElClient = z.object({
         z.maximum(4294967295, { error: 'Invalid value: Expected uint32 to be <= 4294967295' })
       )
   ),
-  p95_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  p95_duration_ms: z.optional(z.number()),
   slot: z.optional(
     z
       .int()
@@ -4835,16 +4790,7 @@ export const zFctEngineGetBlobsByElClient = z.object({
 });
 
 export const zFctEngineGetBlobsByElClientHourly = z.object({
-  avg_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  avg_duration_ms: z.optional(z.number()),
   avg_returned_count: z.optional(z.number()),
   empty_count: z.optional(
     z.coerce
@@ -4874,28 +4820,10 @@ export const zFctEngineGetBlobsByElClientHourly = z.object({
         z.maximum(4294967295, { error: 'Invalid value: Expected uint32 to be <= 4294967295' })
       )
   ),
-  max_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  max_duration_ms: z.optional(z.number()),
   meta_execution_implementation: z.optional(z.string()),
   meta_execution_version: z.optional(z.string()),
-  min_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  min_duration_ms: z.optional(z.number()),
   node_class: z.optional(z.string()),
   observation_count: z.optional(
     z
@@ -4905,26 +4833,8 @@ export const zFctEngineGetBlobsByElClientHourly = z.object({
         z.maximum(4294967295, { error: 'Invalid value: Expected uint32 to be <= 4294967295' })
       )
   ),
-  p50_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
-  p95_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  p50_duration_ms: z.optional(z.number()),
+  p95_duration_ms: z.optional(z.number()),
   partial_count: z.optional(
     z.coerce
       .bigint()
@@ -5217,16 +5127,7 @@ export const zFctEngineGetBlobsDurationChunked50Ms = z.object({
 });
 
 export const zFctEngineNewPayloadByElClient = z.object({
-  avg_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  avg_duration_ms: z.optional(z.number()),
   blob_count: z.optional(
     z
       .int()
@@ -5273,38 +5174,11 @@ export const zFctEngineNewPayloadByElClient = z.object({
         })
       )
   ),
-  max_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
-  median_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  max_duration_ms: z.optional(z.number()),
+  median_duration_ms: z.optional(z.number()),
   meta_execution_implementation: z.optional(z.string()),
   meta_execution_version: z.optional(z.string()),
-  min_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  min_duration_ms: z.optional(z.number()),
   node_class: z.optional(z.string()),
   observation_count: z.optional(
     z
@@ -5314,16 +5188,7 @@ export const zFctEngineNewPayloadByElClient = z.object({
         z.maximum(4294967295, { error: 'Invalid value: Expected uint32 to be <= 4294967295' })
       )
   ),
-  p95_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  p95_duration_ms: z.optional(z.number()),
   slot: z.optional(
     z
       .int()
@@ -5379,16 +5244,7 @@ export const zFctEngineNewPayloadByElClientHourly = z.object({
       )
   ),
   avg_blob_count: z.optional(z.number()),
-  avg_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  avg_duration_ms: z.optional(z.number()),
   avg_gas_limit: z.optional(
     z.coerce
       .bigint()
@@ -5428,28 +5284,10 @@ export const zFctEngineNewPayloadByElClientHourly = z.object({
         })
       )
   ),
-  max_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  max_duration_ms: z.optional(z.number()),
   meta_execution_implementation: z.optional(z.string()),
   meta_execution_version: z.optional(z.string()),
-  min_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  min_duration_ms: z.optional(z.number()),
   node_class: z.optional(z.string()),
   observation_count: z.optional(
     z
@@ -5459,26 +5297,8 @@ export const zFctEngineNewPayloadByElClientHourly = z.object({
         z.maximum(4294967295, { error: 'Invalid value: Expected uint32 to be <= 4294967295' })
       )
   ),
-  p50_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
-  p95_duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  p50_duration_ms: z.optional(z.number()),
+  p95_duration_ms: z.optional(z.number()),
   slot_count: z.optional(
     z
       .int()
@@ -13720,16 +13540,7 @@ export const zGetIntEngineNewPayloadResponse = z.object({
 
 export const zIntEngineNewPayloadFastestExecutionByNodeClass = z.object({
   block_hash: z.optional(z.string()),
-  duration_ms: z.optional(
-    z.coerce
-      .bigint()
-      .check(
-        z.minimum(BigInt('0'), { error: 'Invalid value: Expected uint64 to be >= 0' }),
-        z.maximum(BigInt('18446744073709551615'), {
-          error: 'Invalid value: Expected uint64 to be <= 18446744073709551615',
-        })
-      )
-  ),
+  duration_ms: z.optional(z.number()),
   epoch: z.optional(
     z
       .int()
