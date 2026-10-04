@@ -18,8 +18,8 @@ const backendTarget = BACKENDS[backendKey] ?? backendKey;
 export default defineConfig({
   base: '/',
   define: {
-    'import.meta.env.VITE_BASE_TITLE': JSON.stringify('The Lab by ethPandaOps'),
-    'import.meta.env.VITE_BASE_URL': JSON.stringify('https://lab.ethpandaops.io'),
+    'import.meta.env.VITE_BASE_TITLE': JSON.stringify('The Lab by LambdaClass'),
+    'import.meta.env.VITE_BASE_URL': JSON.stringify('http://ethrex-grafana:8080'),
   },
   plugins: [
     tanstackRouter({

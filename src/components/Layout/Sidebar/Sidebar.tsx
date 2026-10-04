@@ -82,24 +82,22 @@ function SidebarFooter({
     // Collapsed: vertical stack of icons
     return (
       <div className="flex flex-col items-center gap-2 border-t border-border/50 py-3">
-        <a
-          href="https://github.com/ethpandaops/lab"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="rounded-sm p-1.5 text-muted transition-colors hover:bg-primary/10 hover:text-primary"
+        <span
+          aria-disabled="true"
+          title={UNSUPPORTED_TITLE}
+          className="cursor-not-allowed rounded-sm p-1.5 text-muted opacity-40"
           aria-label="GitHub repository"
         >
           <GitHubIcon className="size-4" />
-        </a>
-        <a
-          href="https://twitter.com/ethpandaops"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="rounded-sm p-1.5 text-muted transition-colors hover:bg-primary/10 hover:text-primary"
+        </span>
+        <span
+          aria-disabled="true"
+          title={UNSUPPORTED_TITLE}
+          className="cursor-not-allowed rounded-sm p-1.5 text-muted opacity-40"
           aria-label="X (Twitter)"
         >
           <XIcon className="size-4" />
-        </a>
+        </span>
         <button
           type="button"
           onClick={onToggleCollapse}
@@ -117,24 +115,22 @@ function SidebarFooter({
     <div className="border-t border-border/50 px-1 py-2">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1">
-          <a
-            href="https://github.com/ethpandaops/lab"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-sm p-1.5 text-muted transition-colors hover:bg-primary/10 hover:text-primary"
+          <span
+            aria-disabled="true"
+            title={UNSUPPORTED_TITLE}
+            className="cursor-not-allowed rounded-sm p-1.5 text-muted opacity-40"
             aria-label="GitHub repository"
           >
             <GitHubIcon className="size-4" />
-          </a>
-          <a
-            href="https://twitter.com/ethpandaops"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-sm p-1.5 text-muted transition-colors hover:bg-primary/10 hover:text-primary"
+          </span>
+          <span
+            aria-disabled="true"
+            title={UNSUPPORTED_TITLE}
+            className="cursor-not-allowed rounded-sm p-1.5 text-muted opacity-40"
             aria-label="X (Twitter)"
           >
             <XIcon className="size-4" />
-          </a>
+          </span>
         </div>
         {window.__VERSION__ && <span className="text-[10px] text-muted/60">{window.__VERSION__.version}</span>}
         <button
@@ -155,6 +151,14 @@ interface NavItem {
   to: string;
   icon: typeof ChartBarIcon;
 }
+
+/**
+ * The LambdaClass lab only serves the engine timings page; every other page needs
+ * ethPandaOps' xatu data, which its backend does not have. Other entries stay listed but
+ * disabled.
+ */
+const SUPPORTED_PAGES = new Set(['/ethereum/execution/timings']);
+const UNSUPPORTED_TITLE = 'Not available in the LambdaClass lab';
 
 const ethereumConsensusPages: NavItem[] = [
   { name: 'Overview', to: '/ethereum/consensus/overview', icon: PresentationChartLineIcon },
@@ -207,6 +211,22 @@ function isPageEnabled(
  */
 function NavLink({ page, collapsed }: { page: NavItem; collapsed: boolean }): JSX.Element {
   const Icon = page.icon;
+
+  if (!SUPPORTED_PAGES.has(page.to)) {
+    return (
+      <span
+        aria-disabled="true"
+        title={collapsed ? `${page.name} (${UNSUPPORTED_TITLE})` : UNSUPPORTED_TITLE}
+        className={clsx(
+          'flex cursor-not-allowed items-center gap-x-3 rounded-sm text-muted opacity-40',
+          collapsed ? 'justify-center p-2' : 'px-2 py-1 text-sm/5 font-medium'
+        )}
+      >
+        <Icon className="size-4 shrink-0" />
+        {!collapsed && <span>{page.name}</span>}
+      </span>
+    );
+  }
 
   return (
     <Link
@@ -412,7 +432,7 @@ export function Sidebar({ sidebarOpen, setSidebarOpen, collapsed, setCollapsed }
             {!collapsed && (
               <div className="flex flex-col">
                 <span className="font-sans text-lg leading-tight font-bold text-foreground">The Lab</span>
-                <span className="text-[10px] leading-tight text-muted">lab.ethpandaops.io</span>
+                <span className="text-[10px] leading-tight text-muted">LambdaClass</span>
               </div>
             )}
           </Link>
