@@ -4,7 +4,7 @@
   "slots_per_epoch": 32,
   "node_class": "eip7870-block-builder",
   "prometheus": "http://ethrex-grafana:9090",
-  "prometheus_job": "lighthouse",
+  "prometheus_job": "lighthouse consensus",
   "block_rpc": [
     "http://ethrex-mainnet-2:8545",
     "http://reth-mainnet-1:8545",

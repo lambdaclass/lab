@@ -112,12 +112,19 @@ def backfill_node(conn, cfg: dict, node: dict, since: float) -> tuple[int, int]:
     return np_total, gb_total
 
 
-def first_block_at(url: str, t: float) -> int:
-    """Lowest block number whose timestamp is >= t (binary search over the EL)."""
-    lo, hi = 0, int(blocks.rpc(url, "eth_blockNumber", []), 16)
+def first_block_at(url: str, t: float, seconds_per_slot: int) -> int:
+    """Lowest block number whose timestamp is >= t (binary search over the EL).
+
+    There is at most one block per slot, so the head minus the slots since t is a lower
+    bound: the search never reaches blocks older than the window, which a node may have
+    pruned (reth full nodes do not serve pre-merge mainnet blocks)."""
+    hi = int(blocks.rpc(url, "eth_blockNumber", []), 16)
+    head_ts = int(blocks.rpc(url, "eth_getBlockByNumber", [hex(hi), False])["timestamp"], 16)
+    lo = max(0, hi - int((head_ts - t) // seconds_per_slot) - 1)
     while lo < hi:
         mid = (lo + hi) // 2
-        if int(blocks.rpc(url, "eth_getBlockByNumber", [hex(mid), False])["timestamp"], 16) < t:
+        block = blocks.rpc(url, "eth_getBlockByNumber", [hex(mid), False])
+        if block is None or int(block["timestamp"], 16) < t:
             lo = mid + 1
         else:
             hi = mid
@@ -127,7 +134,7 @@ def first_block_at(url: str, t: float) -> int:
 def index_history(conn, cfg: dict, since: float) -> int:
     # Use an EL with full block history: a snap-synced node lacks old bodies.
     url = cfg.get("history_rpc", cfg["block_rpc"][0])
-    first = first_block_at(url, since - cfg["seconds_per_slot"])
+    first = first_block_at(url, since - cfg["seconds_per_slot"], cfg["seconds_per_slot"])
     head = int(blocks.rpc(url, "eth_blockNumber", []), 16)
     have = {n for (n,) in conn.execute("SELECT number FROM blocks WHERE number >= ?", (first,))}
     missing = [n for n in range(first, head + 1) if n not in have]
