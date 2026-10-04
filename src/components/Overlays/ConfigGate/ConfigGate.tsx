@@ -1,5 +1,6 @@
 import { type JSX, useEffect } from 'react';
 import { useConfig } from '@/hooks/useConfig';
+import { publicPath } from '@/utils/public-path';
 
 interface ConfigGateProps {
   children: React.ReactNode;
@@ -26,7 +27,7 @@ export function ConfigGate({ children }: ConfigGateProps): JSX.Element {
         {/* Content */}
         <div className="relative flex flex-col items-center px-4">
           <img
-            src="/images/lab.png"
+            src={publicPath('/images/lab.png')}
             className="size-48 animate-spin object-contain sm:size-64 md:size-72"
             alt="Loading..."
           />
@@ -54,7 +55,7 @@ export function ConfigGate({ children }: ConfigGateProps): JSX.Element {
             {/* Glow effect */}
             <div className="absolute inset-0 animate-pulse rounded-full bg-danger/20 blur-3xl"></div>
             <img
-              src="/images/lab.png"
+              src={publicPath('/images/lab.png')}
               className="relative size-48 rotate-180 object-contain sm:size-64 md:size-72"
               alt="Lab Logo"
             />

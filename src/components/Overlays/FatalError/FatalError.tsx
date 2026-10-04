@@ -1,4 +1,5 @@
 import type { JSX } from 'react';
+import { publicPath } from '@/utils/public-path';
 
 export function FatalError({ error }: { error: Error }): JSX.Element {
   console.error('Route error:', error);
@@ -15,7 +16,11 @@ export function FatalError({ error }: { error: Error }): JSX.Element {
         <div className="relative">
           {/* Glow effect */}
           <div className="absolute inset-0 animate-pulse rounded-full bg-danger/20 blur-3xl"></div>
-          <img src="/images/lab.png" className="relative size-72 rotate-180 object-contain" alt="Lab Logo" />
+          <img
+            src={publicPath('/images/lab.png')}
+            className="relative size-72 rotate-180 object-contain"
+            alt="Lab Logo"
+          />
         </div>
         <h1 className="mt-8 text-2xl font-bold text-danger">Uhh... Something went wrong</h1>
         <p className="mt-2 max-w-md text-center text-sm text-muted">{error.message}</p>

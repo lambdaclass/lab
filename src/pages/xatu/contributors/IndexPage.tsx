@@ -7,6 +7,7 @@ import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { UserCard } from './components/UserCard';
 import { UserCardSkeleton } from './components/UserCardSkeleton';
 import { useContributorsData, getDisplayVersion, type Contributor } from './hooks';
+import { publicPath } from '@/utils/public-path';
 
 export function IndexPage(): JSX.Element {
   const { publicContributors, corporateContributors, internalContributors, totalCount, isLoading, error } =
@@ -89,7 +90,7 @@ export function IndexPage(): JSX.Element {
             description={
               <div className="flex items-center gap-4">
                 <img
-                  src="/images/panda-pleading.png"
+                  src={publicPath('/images/panda-pleading.png')}
                   alt="Contributoor Panda"
                   className="hidden h-12 shrink-0 xl:block"
                 />
@@ -162,7 +163,7 @@ export function IndexPage(): JSX.Element {
           description={
             <div className="flex items-center gap-4">
               <img
-                src="/images/panda-pleading.png"
+                src={publicPath('/images/panda-pleading.png')}
                 alt="Contributoor Panda"
                 className="hidden h-12 shrink-0 xl:block"
               />

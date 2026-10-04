@@ -1,6 +1,7 @@
 import { type JSX, useState } from 'react';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 import type { BlobPosterLogoProps } from './BlobPosterLogo.types';
+import { publicPath } from '@/utils/public-path';
 
 /**
  * Normalizes a blob poster name to a consistent filename format.
@@ -42,7 +43,7 @@ function isUnknownPoster(posterName: string): boolean {
  * Gets the URL for a blob poster logo image
  */
 function getBlobPosterLogoUrl(posterName: string): string {
-  return `/images/external/blob-posters/${normalizePosterName(posterName)}.png`;
+  return publicPath(`/images/external/blob-posters/${normalizePosterName(posterName)}.png`);
 }
 
 /**

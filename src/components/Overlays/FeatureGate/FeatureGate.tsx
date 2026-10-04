@@ -3,6 +3,7 @@ import { useLocation, Link } from '@tanstack/react-router';
 import { useIsPageEnabled } from '@/hooks/useIsPageEnabled';
 import { useNetwork } from '@/hooks/useNetwork';
 import { useConfig } from '@/hooks/useConfig';
+import { publicPath } from '@/utils/public-path';
 
 interface FeatureGateProps {
   children: React.ReactNode;
@@ -41,7 +42,7 @@ export function FeatureGate({ children }: FeatureGateProps): JSX.Element {
           <div className="relative mb-8">
             {/* Glow effect */}
             <div className="absolute inset-0 animate-pulse rounded-full bg-warning/20 blur-3xl"></div>
-            <img src="/images/lab.png" className="relative size-32 object-contain" alt="Lab Logo" />
+            <img src={publicPath('/images/lab.png')} className="relative size-32 object-contain" alt="Lab Logo" />
           </div>
 
           <h1 className="text-2xl font-bold text-foreground">Feature Not Available</h1>

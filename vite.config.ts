@@ -16,10 +16,11 @@ const backendTarget = BACKENDS[backendKey] ?? backendKey;
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/',
+  // LAB_BASE_PATH serves the lab under a sub-path, e.g. LAB_BASE_PATH=/lab/ pnpm build
+  base: process.env.LAB_BASE_PATH ?? '/',
   define: {
     'import.meta.env.VITE_BASE_TITLE': JSON.stringify('The Lab by LambdaClass'),
-    'import.meta.env.VITE_BASE_URL': JSON.stringify('http://ethrex-grafana:8080'),
+    'import.meta.env.VITE_BASE_URL': JSON.stringify(process.env.LAB_PUBLIC_URL ?? 'https://grafana.ethrex.xyz/lab'),
   },
   plugins: [
     tanstackRouter({

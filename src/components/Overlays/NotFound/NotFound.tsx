@@ -1,5 +1,6 @@
 import type { JSX } from 'react';
 import { Link } from '@tanstack/react-router';
+import { publicPath } from '@/utils/public-path';
 
 /**
  * NotFound component displays a 404 error page when a route is not found.
@@ -18,7 +19,7 @@ export function NotFound(): JSX.Element {
         <div className="relative">
           {/* Glow effect */}
           <div className="absolute inset-0 animate-pulse rounded-full bg-warning/20 blur-3xl"></div>
-          <img src="/images/lab.png" className="relative size-72 object-contain" alt="Lab Logo" />
+          <img src={publicPath('/images/lab.png')} className="relative size-72 object-contain" alt="Lab Logo" />
         </div>
         <h1 className="mt-8 text-2xl font-bold text-foreground">Page Not Found</h1>
         <p className="mt-2 max-w-md text-center text-sm text-muted">

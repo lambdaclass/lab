@@ -15,6 +15,7 @@ import { NetworkIcon } from '@/components/Ethereum/NetworkIcon';
 import { useChartDownload } from '@/hooks/useChartDownload';
 import { useNetwork } from '@/hooks/useNetwork';
 import type { PopoutCardProps } from './PopoutCard.types';
+import { publicPath } from '@/utils/public-path';
 
 /**
  * PopoutCard - A card component with expand and download icons
@@ -268,7 +269,7 @@ export function PopoutCard({
               {/* Action buttons - hidden during screenshot, replaced with logo */}
               {showLogo ? (
                 <div className="shrink-0">
-                  <img src="/images/ethpandaops.png" alt="ethPandaOps" className="h-10 w-auto" />
+                  <img src={publicPath('/images/ethpandaops.png')} alt="ethPandaOps" className="h-10 w-auto" />
                 </div>
               ) : (
                 <div className="flex shrink-0 items-start gap-2">
@@ -340,7 +341,7 @@ export function PopoutCard({
             {/* Show logo or dropdown in modal title */}
             {showModalLogo ? (
               <div className="shrink-0">
-                <img src="/images/ethpandaops.png" alt="ethPandaOps" className="h-10 w-auto" />
+                <img src={publicPath('/images/ethpandaops.png')} alt="ethPandaOps" className="h-10 w-auto" />
               </div>
             ) : (
               enableDownload && (

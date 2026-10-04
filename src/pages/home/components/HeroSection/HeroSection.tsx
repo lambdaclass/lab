@@ -7,6 +7,7 @@ import { SECONDS_PER_SLOT, SLOTS_PER_EPOCH } from '@/utils/beacon';
 import { getActiveFork } from '@/utils/forks';
 import { NETWORK_ORDER } from '@/utils/networks';
 import { formatSlot } from '@/utils/number';
+import { publicPath } from '@/utils/public-path';
 
 /** Compute the current slot for a network from its genesis time. */
 function getCurrentSlot(genesisTime: number, now: number): number {
@@ -152,7 +153,7 @@ export function HeroSection(): JSX.Element {
         </h1>
 
         <div className="mt-4 flex animate-fade-in-delay items-center justify-center gap-2.5 sm:mt-6 lg:mt-8">
-          <img src="/images/lab.png" alt="" className="size-5 opacity-60" />
+          <img src={publicPath('/images/lab.png')} alt="" className="size-5 opacity-60" />
           <span className="text-[11px]/3 font-medium tracking-[0.2em] text-muted uppercase">by ethPandaOps</span>
         </div>
 

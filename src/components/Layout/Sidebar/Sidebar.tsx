@@ -30,6 +30,7 @@ import { ThemeToggle } from '@/components/Layout/ThemeToggle';
 import { useConfig } from '@/hooks/useConfig';
 import { useNetwork } from '@/hooks/useNetwork';
 import type { SidebarProps } from './Sidebar.types';
+import { publicPath } from '@/utils/public-path';
 
 /**
  * Ethereum diamond logo SVG component
@@ -428,7 +429,7 @@ export function Sidebar({ sidebarOpen, setSidebarOpen, collapsed, setCollapsed }
           )}
         >
           <Link to="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-            <img alt="Lab Logo" src="/images/lab.png" className="h-7 w-auto" />
+            <img alt="Lab Logo" src={publicPath('/images/lab.png')} className="h-7 w-auto" />
             {!collapsed && (
               <div className="flex flex-col">
                 <span className="font-sans text-lg leading-tight font-bold text-foreground">The Lab</span>

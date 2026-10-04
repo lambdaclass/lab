@@ -1,6 +1,7 @@
 import type { CreateClientConfig } from '@/api/client.gen';
 
-export const BASE_URL = import.meta.env.VITE_API_URL || '';
+// Defaults to the app's base path, so a lab built for a sub-path calls its own API there.
+export const BASE_URL = import.meta.env.VITE_API_URL || import.meta.env.BASE_URL.replace(/\/$/, '');
 export const PATH_PREFIX = '/api/v1';
 
 // Refetch intervals for background polling (in milliseconds)

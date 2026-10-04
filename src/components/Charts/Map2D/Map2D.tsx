@@ -10,6 +10,7 @@ import type { Map2DChartProps, PointData, PointNodeData, RouteData } from './Map
 const EMPTY_ROUTES: RouteData[] = [];
 const EMPTY_POINTS: PointData[] = [];
 import { useThemeColors } from '@/hooks/useThemeColors';
+import { publicPath } from '@/utils/public-path';
 
 /**
  * Map2DChart - A high-performance 2D map visualization component using ECharts
@@ -72,7 +73,7 @@ function Map2DChartComponent({
           timeoutId = setTimeout(() => reject(new Error('Map load timeout')), 10000);
         });
 
-        const fetchPromise = fetch('/data/maps/world.json', {
+        const fetchPromise = fetch(publicPath('/data/maps/world.json'), {
           signal: controller.signal,
         });
 

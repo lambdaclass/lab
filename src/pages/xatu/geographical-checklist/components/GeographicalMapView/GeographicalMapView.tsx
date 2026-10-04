@@ -11,6 +11,7 @@ import { MapPinIcon } from '@heroicons/react/20/solid';
 import { getClassificationBadgeClasses, getRelativeTime, getCountryFlag } from '@/utils';
 import type { GeographicalMapViewProps } from './GeographicalMapView.types';
 import type { ProcessedNode } from '../../hooks/useGeographicalData/useGeographicalData.types';
+import { publicPath } from '@/utils/public-path';
 
 interface PointData {
   name?: string;
@@ -83,7 +84,7 @@ export function GeographicalMapView({ nodes, isLoading }: GeographicalMapViewPro
   useEffect(() => {
     const loadWorldMap = async (): Promise<void> => {
       try {
-        const response = await fetch('/data/maps/world.json');
+        const response = await fetch(publicPath('/data/maps/world.json'));
         const worldGeoJson = await response.json();
         echarts.registerMap('world', worldGeoJson);
         setMapLoaded(true);

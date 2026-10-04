@@ -13,6 +13,7 @@ import { NotFound } from '@/components/Overlays/NotFound';
 // Create a new router instance with custom error and not found components
 const router = createRouter({
   routeTree,
+  basepath: import.meta.env.BASE_URL,
   defaultErrorComponent: FatalError,
   defaultNotFoundComponent: NotFound,
   scrollRestoration: true,

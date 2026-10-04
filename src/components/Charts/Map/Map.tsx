@@ -10,6 +10,7 @@ import { useThemeColors } from '@/hooks/useThemeColors';
 import { useTheme } from '@/hooks/useTheme';
 import { resolveCssColorToHex } from '@/utils/color';
 import { getDataVizColors } from '@/utils/dataVizColors';
+import { publicPath } from '@/utils/public-path';
 
 // Get data visualization colors once at module level
 const { CHART_CATEGORICAL_COLORS } = getDataVizColors();
@@ -77,7 +78,7 @@ export function MapChart({
       const loadWorldMap = async (): Promise<void> => {
         try {
           // Fetch world map GeoJSON from local public directory
-          const response = await fetch('/data/maps/world.json');
+          const response = await fetch(publicPath('/data/maps/world.json'));
           const worldGeoJson = await response.json();
 
           // Register the map with echarts

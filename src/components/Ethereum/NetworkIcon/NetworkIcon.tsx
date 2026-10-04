@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
 import { clsx } from 'clsx';
 import type { NetworkIconProps } from './NetworkIcon.types';
+import { publicPath } from '@/utils/public-path';
 
 /**
  * Network icon type definitions
@@ -15,7 +16,11 @@ type NetworkIcon = ImageIcon | EmojiIcon;
  * Mainnet uses theme-specific logos: dark grayscale for light mode, colorful for dark/star modes
  */
 const NETWORK_ICONS: Record<string, NetworkIcon> = {
-  mainnet: { type: 'img', content: '/images/ethereum-dark.svg', lightContent: '/images/ethereum-light.svg' },
+  mainnet: {
+    type: 'img',
+    content: publicPath('/images/ethereum-dark.svg'),
+    lightContent: publicPath('/images/ethereum-light.svg'),
+  },
   holesky: { type: 'emoji', content: '🦊' },
   sepolia: { type: 'emoji', content: '🐬' },
   hoodi: { type: 'emoji', content: '🦚' },

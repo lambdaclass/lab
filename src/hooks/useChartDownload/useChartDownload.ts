@@ -3,6 +3,7 @@ import { toPng } from 'html-to-image';
 import type { EChartsInstance } from 'echarts-for-react';
 import { resolveCssColorToHex } from '@/utils/color';
 import type { ChartDownloadResult, UseChartDownloadOptions } from './useChartDownload.types';
+import { publicPath } from '@/utils/public-path';
 
 /** Options for html-to-image toPng function */
 interface ToPngOptions {
@@ -105,7 +106,7 @@ export function useChartDownload(): ChartDownloadResult {
     async (chartInstance: EChartsInstance, options: UseChartDownloadOptions = {}): Promise<string> => {
       const {
         pixelRatio = 2,
-        headerPath = '/images/header.png',
+        headerPath = publicPath('/images/header.png'),
         backgroundColor = 'transparent',
         watermark = false,
         watermarkText = 'ethpandaops.io',
@@ -203,7 +204,7 @@ export function useChartDownload(): ChartDownloadResult {
     async (element: HTMLElement, options: UseChartDownloadOptions = {}): Promise<string> => {
       const {
         pixelRatio = 2,
-        headerPath = '/images/header.png',
+        headerPath = publicPath('/images/header.png'),
         backgroundColor,
         watermark = false,
         watermarkText = 'ethpandaops.io',

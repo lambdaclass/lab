@@ -24,6 +24,7 @@ import { NetworkIcon } from '@/components/Ethereum/NetworkIcon';
 import { useNetwork } from '@/hooks/useNetwork';
 import type { Config } from '@/hooks/useConfig';
 import type { Bounds } from '@/hooks/useBounds';
+import { publicPath } from '@/utils/public-path';
 
 // Define router context interface
 interface MyRouterContext {
@@ -107,7 +108,7 @@ function MobileHeader({
           <span className="h-0.5 w-6 origin-center rounded-full bg-muted transition-all duration-300 ease-out group-hover:bg-foreground group-[[aria-pressed=true]]:-translate-y-2 group-[[aria-pressed=true]]:-rotate-45" />
         </button>
         <Link to="/" className="flex items-center gap-2">
-          <img alt="Lab Logo" src="/images/lab.png" className="h-8 w-auto" />
+          <img alt="Lab Logo" src={publicPath('/images/lab.png')} className="h-8 w-auto" />
           <span className="font-sans text-xl font-bold text-foreground">The Lab</span>
         </Link>
       </div>
@@ -228,7 +229,11 @@ function RootComponent(): JSX.Element {
                         rel="noopener noreferrer"
                         className="absolute top-4 right-4 z-50 opacity-60 transition-opacity hover:opacity-100"
                       >
-                        <img src="/images/ethpandaops-logo-64.png" alt="ethPandaOps" className="h-8 w-auto" />
+                        <img
+                          src={publicPath('/images/ethpandaops-logo-64.png')}
+                          alt="ethPandaOps"
+                          className="h-8 w-auto"
+                        />
                       </a>
                       <FeatureGate>
                         <Outlet />
@@ -337,7 +342,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     ],
     links: [
       { rel: 'canonical', href: import.meta.env.VITE_BASE_URL },
-      { rel: 'icon', type: 'image/png', href: '/images/lab.png' },
+      { rel: 'icon', type: 'image/png', href: publicPath('/images/lab.png') },
     ],
   }),
 });

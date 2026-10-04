@@ -1,6 +1,7 @@
 import { type JSX, useState } from 'react';
 import { CubeIcon } from '@heroicons/react/24/outline';
 import type { ClientLogoProps } from './ClientLogo.types';
+import { publicPath } from '@/utils/public-path';
 
 /** Map client name aliases to canonical names */
 const CLIENT_ALIASES: Record<string, string> = {
@@ -13,7 +14,7 @@ function normalizeClientName(clientName: string): string {
 }
 
 function getClientLogoUrl(clientName: string): string {
-  return `/images/external/clients/${normalizeClientName(clientName)}.png`;
+  return publicPath(`/images/external/clients/${normalizeClientName(clientName)}.png`);
 }
 
 export function ClientLogo({ client, size = 20, className = '' }: ClientLogoProps): JSX.Element {
